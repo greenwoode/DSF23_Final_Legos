@@ -18,6 +18,7 @@ This data was split 80-20 train-test, and used to train four (4) models, a linea
 - joblib
 - Scikit-learn
 - SciPy
+- MatPlotLib
 - Visual Studio 2022 for the IDE
 
 Scikit Models Utilized:
