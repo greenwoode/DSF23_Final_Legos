@@ -1,6 +1,7 @@
 
 import numpy as np
 import pandas as pd
+from joblib import dump
 
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import SGDRegressor
@@ -42,6 +43,7 @@ linModel = LinearRegression().fit(X_train, y_train)
 
 linScore = linModel.score(X_test, y_test)
 print(f'linScore:{round(linScore*100, 1)}%')
+dump(linScore, 'linearModel.joblib')
 
 poly1 = PolynomialFeatures(2)
 Xp_train = poly1.fit_transform(X_train)
@@ -53,16 +55,19 @@ polyModel = LinearRegression().fit(Xp_train, y_train)
 
 polyScore = polyModel.score(Xp_test, y_test)
 print(f'polyScore:{round(polyScore*100, 1)}%')
+dump(polyScore, 'polyModel.joblib')
 
 SGDModel = make_pipeline(StandardScaler(),SGDRegressor(random_state=RAND_STATE)).fit(X_train, y_train)
 
 SGDScore = SGDModel.score(X_test, y_test)
 print(f'SGDScore:{round(SGDScore*100, 1)}%')
+dump(SGDScore, 'SGDModel.joblib')
 
 BayesianModel = BayesianRidge().fit(X_train, y_train)
 
 BayesianScore = BayesianModel.score(X_test, y_test)
 print(f'BayesianScore:{round(BayesianScore*100, 1)}%')
+dump(BayesianScore, 'BayesianModel.joblib')
 
 pca = PCA().fit(X)
 #print(f'First two PCS:{pca.explained_variance_ratio_[0:2]}')
